@@ -28,7 +28,7 @@ data <- data %>%
   ))
 data$Result_bin <- ifelse(data$Result == "positive", 1, 0)
 table(data$Result_bin)
-model_clean <- glm(Result_bin ~ Age_group + Time, family = "binomial", data = data)
+model_clean <- glm(Result_bin ~ Age_group + Time + Location, family = "binomial", data = data)
 data$Age_group <- relevel(factor(data$Age_group), ref = "30-60")
 summary(model_clean)
 clean_data <- data[complete.cases(data[c("Result_bin", "Age_group", "Time")]), ]
